@@ -20,6 +20,7 @@
 (컴퍼넌트 단위로 통합 테스트를 하는 것이 더 효율적이다.)   
 ![image](https://github.com/suhong99/StudyRepo/assets/120103909/53f0eaae-2c0c-477d-87d8-e4eb5bcae518)
 ![image](https://github.com/suhong99/StudyRepo/assets/120103909/946b0677-b051-4a0a-9f73-9cdc0591aed4)
+![image](https://github.com/suhong99/StudyRepo/assets/120103909/f54a54f3-7f7c-4d06-826e-e01f28a4110c)
 
 
 
