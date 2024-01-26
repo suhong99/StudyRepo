@@ -12,6 +12,19 @@
 ![image](https://github.com/suhong99/StudyRepo/assets/120103909/2d848051-9d43-4f04-9e48-87d004436b28)
 
 따라서 기능적 테스트를 해야하는데, 이떄 시각적 테스트와 기능적 테스트를 서로 구분해서 해야함(시각에선 시간만,)
+
+단위테스트의 경우에도 불필요한 것을 최소화 해야함   
+![image](https://github.com/suhong99/StudyRepo/assets/120103909/147d4df0-8659-48b6-a786-1e0f2378e759)   
+(발표자는 Socialble 테스트를 선호한다고 함)
+![image](https://github.com/suhong99/StudyRepo/assets/120103909/60f5ae67-000d-4666-9195-1205cd3622e1)
+(컴퍼넌트 단위로 통합 테스트를 하는 것이 더 효율적이다.)   
+![image](https://github.com/suhong99/StudyRepo/assets/120103909/53f0eaae-2c0c-477d-87d8-e4eb5bcae518)
+![image](https://github.com/suhong99/StudyRepo/assets/120103909/946b0677-b051-4a0a-9f73-9cdc0591aed4)
+
+
+
+
+
    
 - https://www.youtube.com/watch?v=L1dtkLeIz-M
   <br/>
