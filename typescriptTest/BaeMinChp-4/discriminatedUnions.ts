@@ -83,7 +83,7 @@ type ProductPrice = '10000' | '20000' | '50000';
 const getProduction = (productPrice: ProductPrice): string => {
   if (productPrice === '10000') return '배민상품권 1만원';
   if (productPrice === '20000') return '배민상품권 2만원';
-  else exhaustiveCheck(productPrice); //'string' 형식의 인수는 'never' 형식의 매개 변수에 할당될 수 없습니다.ts(2345)
+  // else exhaustiveCheck(productPrice); //'string' 형식의 인수는 'never' 형식의 매개 변수에 할당될 수 없습니다.ts(2345)
   return '배민상품권';
 };
 
