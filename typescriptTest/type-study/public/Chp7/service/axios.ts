@@ -118,3 +118,69 @@ class APIBuilder {
 
   //...
 }
+
+interface Response<T> {
+  data: T;
+  status: string;
+  serverDateTime: string;
+  errorCode?: string; //FAIL, ERROR
+  errorMessage?: string;
+}
+
+// const fetchCart = (): AxiosPromise<Response<FetchCartResponse>> =>
+//   apiRequester.get<Response< FetchCartResponse >>'cart';
+
+interface response {
+  data: {
+    // cartItems: CartItem[];
+    forPass: unknown;
+  };
+}
+
+type ForPass = {
+  type: 'A' | 'B' | 'C';
+};
+
+const isTargetValue = () => (data.forPass as ForPass).type === 'A';
+
+interface ListResponse {
+  items: ListItem[];
+}
+
+const fetchList = async (filter?: ListFetchFilter): Promise<ListResponse> => {
+  const { data } = await apiRequester
+    .params({ ...filter })
+    .get('/apis/get-list-summaries')
+    .call<Response<ListResponse>>();
+
+  return { data };
+};
+
+interface JobListItemResponse {
+  name: string;
+}
+
+interface JobListResponse {
+  jobItems: JobListItemResponse[];
+}
+
+class JobList {
+  readonly totalItemCount: number;
+  readonly items: JobListItemResponse[];
+
+  constructor({ jobItems }: JobListResponse) {
+    this.totalItemCount = jobItems.length;
+    this.items = jobItems;
+  }
+}
+
+const fetchJobList = async (
+  filter?: ListFetchFilter
+): Promise<JobListResponse> => {
+  const { data } = await apiRequester
+    .params({ ...filter })
+    .get('/apis/get-list-summaries')
+    .call<Response<JobListResponse>>();
+
+  return new JobList(data);
+};
