@@ -82,3 +82,30 @@ type ReactNode =
   | boolean
   | null
   | undefined;
+
+interface Props {
+  icon: JSX.Element;
+}
+
+const Item = ({ icon }: Props) => {
+  const iconSize = icon.props.size;
+  return <li>{icon}</li>;
+};
+
+// const App = () => {
+//   return <Item icon={<Icon size={14} />} />;
+// };
+
+type NativeButtonProps = React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
+
+type ButtonProps = {
+  onClick?: NativeButtonProps['onClick'];
+};
+
+type NativeButtonType2 = React.ComponentPropsWithoutRef<'button'>;
+type ButtonProps2 = {
+  onClick?: NativeButtonType2['onClick'];
+};
