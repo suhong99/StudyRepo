@@ -72,3 +72,4 @@ interface HTMLAttrSelectProps2<OptionType extends Record<string, string>>
   extends Pick<ReactSelectProps, 'id' | 'key'> {
   //  ...
 }
+
