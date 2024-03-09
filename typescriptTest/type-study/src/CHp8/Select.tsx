@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 type Option = Record<string, string>;
 interface SelectProps {
@@ -47,3 +47,28 @@ const eventHandler1: GlobalEventHandlers['onchange'] = (e) => {
 const eventHandler2: ChangeEventHandler = (e) => {
   console.log(e.target);
 };
+
+interface GenericSelectProps<OptionType extends Record<string, string>> {
+  options: OptionType;
+  selectedOption?: keyof OptionType;
+  onChange?: (selected?: keyof OptionType) => void;
+}
+
+const GenericSelect = <OptionType extends Record<string, string>>({
+  options,
+  selectedOption,
+  onChange,
+}: GenericSelectProps<OptionType>) => {
+  //
+};
+
+type ReactSelectProps = React.ComponentPropsWithoutRef<'select'>;
+interface HTMLAttrSelectProps<OptionType extends Record<string, string>> {
+  id?: ReactSelectProps['id'];
+  className?: ReactSelectProps['className'];
+}
+
+interface HTMLAttrSelectProps2<OptionType extends Record<string, string>>
+  extends Pick<ReactSelectProps, 'id' | 'key'> {
+  //  ...
+}
