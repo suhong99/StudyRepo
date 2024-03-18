@@ -1,7 +1,7 @@
 import GameConfig from '../../config/gameconfig';
 
 export default class TetrisBlock {
-  private tiles: number[][][];
+  // private tiles: number[][][];
   private currentTile: number[][];
   private width: number;
   private height: number;
@@ -9,7 +9,7 @@ export default class TetrisBlock {
   private y?: number;
 
   constructor(tiles: number[][][]) {
-    this.tiles = tiles;
+    // this.tiles = tiles;
     this.currentTile = tiles[0];
     this.width = this.currentTile[0].length;
     this.height = this.currentTile.length;

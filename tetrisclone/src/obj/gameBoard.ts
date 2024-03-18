@@ -35,16 +35,15 @@ export default class GameBoard {
     block.setPosition(x, y);
     this.currentTetrisBlock = block;
   }
+
   _currentBlockToBoard() {
     if (this.currentTetrisBlock === undefined) return;
     const renderInfo = this.currentTetrisBlock.getRenderInfo();
-    console.log(renderInfo);
 
     for (let y = renderInfo.startY; y < renderInfo.endY; y++) {
       for (let x = renderInfo.startX; x < renderInfo.endX; x++) {
-        console.log(renderInfo.tiles, y, renderInfo.startX);
         if (
-          renderInfo.tiles[y - renderInfo.startX][x - renderInfo.startX] !== 0
+          renderInfo.tiles[y - renderInfo.startY][x - renderInfo.startX] !== 0
         ) {
           this.board[y][x] =
             renderInfo.tiles[y - renderInfo.startY][x - renderInfo.startX];
