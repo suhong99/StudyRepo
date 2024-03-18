@@ -36,6 +36,11 @@ export default class GameBoard {
     this.currentTetrisBlock = block;
   }
 
+  moveBlock(offsetX: number, offsetY: number) {
+    if (this.currentTetrisBlock === undefined) return;
+    this.currentTetrisBlock.move(offsetX, offsetY);
+  }
+
   _currentBlockToBoard() {
     if (this.currentTetrisBlock === undefined) return;
     const renderInfo = this.currentTetrisBlock.getRenderInfo();

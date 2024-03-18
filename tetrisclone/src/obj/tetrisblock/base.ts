@@ -5,8 +5,8 @@ export default class TetrisBlock {
   private currentTile: number[][];
   private width: number;
   private height: number;
-  private x?: number;
-  private y?: number;
+  private x: number = 0;
+  private y: number = 0;
 
   constructor(tiles: number[][][]) {
     // this.tiles = tiles;
@@ -18,6 +18,11 @@ export default class TetrisBlock {
   setPosition(x: number, y: number): void {
     this.x = x;
     this.y = y;
+  }
+
+  move(offsetX: number, offsetY: number) {
+    this.x += offsetX;
+    this.y += offsetY;
   }
 
   getRenderInfo() {
