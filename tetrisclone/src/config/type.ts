@@ -14,3 +14,13 @@ export type BlockType =
   | TetrisBlockS
   | TetrisBlockT
   | TetrisBlockZ;
+
+export type BlockInfo = {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+  tiles: Tiles;
+};
+
+export type Tiles = number[][];

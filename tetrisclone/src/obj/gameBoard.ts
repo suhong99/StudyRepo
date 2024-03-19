@@ -2,6 +2,10 @@ import Phaser from 'phaser';
 import GameConfig from '../config/gameconfig';
 import { BlockType } from '../config/type';
 import TetrisBlockFactory from './tetrisblockfactory';
+import {
+  checkBlockCollision,
+  checkBlockWithInArea,
+} from './tetrisblock/helper';
 
 export default class GameBoard {
   private scene: Phaser.Scene;
@@ -9,6 +13,7 @@ export default class GameBoard {
   private renderBoard: number[][];
   private currentTetrisBlock: BlockType | undefined; // 현재 블록의 타입을 추가
   private tetrisBlockFactory: TetrisBlockFactory; // 테트리스 블록 팩토리의 타입 추가
+  cursors: (() => Phaser.Types.Input.Keyboard.CursorKeys) | undefined;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
@@ -21,6 +26,9 @@ export default class GameBoard {
   init(): void {
     this._initBoard(this.board, 0);
     this._initBoard(this.renderBoard, 0);
+
+    this.cursors = this.scene.input.keyboard?.createCursorKeys;
+    this.scene.input.keyboard?.on('keydown', this.handleKeyUp.bind(this));
   }
 
   private _initBoard(tiles: number[][], value: number): void {
@@ -42,6 +50,44 @@ export default class GameBoard {
   moveBlock(offsetX: number, offsetY: number) {
     if (this.currentTetrisBlock === undefined) return;
     this.currentTetrisBlock.move(offsetX, offsetY);
+  }
+
+  handleKeyUp(event: { keyCode: number }) {
+    if (
+      event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT &&
+      this.canMoveBlock(-1, 0)
+    ) {
+      this.currentTetrisBlock?.move(-1, 0);
+    } else if (
+      event.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT &&
+      this.canMoveBlock(1, 0)
+    ) {
+      this.currentTetrisBlock?.move(1, 0);
+    } else if (
+      event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN &&
+      this.canMoveBlock(0, 1)
+    ) {
+      this.currentTetrisBlock?.move(0, 1);
+    } else if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
+      this.currentTetrisBlock?.rotate();
+    }
+  }
+
+  canMoveBlock(offsetX: number, offsetY: number) {
+    if (this.currentTetrisBlock === undefined) return;
+    const blockInfo = this.currentTetrisBlock.getNextMoveInfo(offsetX, offsetY);
+
+    if (!checkBlockWithInArea(blockInfo, this.board)) return false;
+    if (checkBlockCollision(blockInfo, this.board)) return false;
+    return true;
+  }
+
+  canRotateBlock() {
+    if (this.currentTetrisBlock === undefined) return;
+    const blockInfo = this.currentTetrisBlock.getNextRotateInfo();
+
+    if (!checkBlockWithInArea(blockInfo, this.board)) return false;
+    if (checkBlockCollision(blockInfo, this.board)) return false;
   }
 
   _boardToRenderBoard() {
@@ -99,7 +145,8 @@ export default class GameBoard {
               j * GameConfig.MainScene.RENDER_TILE_SIZE,
               i * GameConfig.MainScene.RENDER_TILE_SIZE,
               GameConfig.MainScene.RENDER_TILE_SPRITE_SHEET_KEY,
-              this.board[i][j] - 1
+              this.board[i][j]
+              // this.board[i][j] - 1
             )
             .setScale(
               GameConfig.MainScene.RENDER_TILE_SIZE /
