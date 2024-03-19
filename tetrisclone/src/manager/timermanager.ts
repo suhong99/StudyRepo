@@ -24,7 +24,7 @@ export default class TimerManager {
     this.fallingBlockTimer += delta;
   }
 
-  public checkBlockDropTimer(): boolean {
+  public checkBlockDropTime(): boolean {
     if (
       this.fallingBlockTimer > GameConfig.MainScene.TIMER_INTERVAL_BLOCK_DOWN
     ) {

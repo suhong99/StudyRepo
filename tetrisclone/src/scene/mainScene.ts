@@ -5,14 +5,14 @@ import TimerManager from '../manager/timermanager';
 
 export default class MainScene extends Phaser.Scene {
   private gameBoard: GameBoard;
-  private timeManager: TimerManager; // timeManager 속성 선언
+  private timerManager: TimerManager; // timeManager 속성 선언
 
   constructor() {
     super('MainScene');
     this.gameBoard = new GameBoard(this);
     // this.timeManager = new TimerManager(); // timeManager 인스턴스 생성
     //private라 인스턴스로 생성
-    this.timeManager = TimerManager.getInstance();
+    this.timerManager = TimerManager.getInstance();
   }
 
   preload() {
@@ -49,10 +49,8 @@ export default class MainScene extends Phaser.Scene {
   }
 
   update(time: number, delta: number): void {
-    this.timeManager.update(delta);
-    if (this.timeManager.checkBlockDropTimer()) {
-      this.gameBoard.moveBlock(0, 1);
-    }
+    this.timerManager.update(delta);
+    this.gameBoard.update(time, delta);
     this.gameBoard.render();
   }
 }

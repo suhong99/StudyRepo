@@ -6,6 +6,7 @@ import {
   checkBlockCollision,
   checkBlockWithInArea,
 } from './tetrisblock/helper';
+import TimerManager from '../manager/timermanager';
 
 export default class GameBoard {
   private scene: Phaser.Scene;
@@ -13,6 +14,7 @@ export default class GameBoard {
   private renderBoard: number[][];
   private currentTetrisBlock: BlockType | undefined; // 현재 블록의 타입을 추가
   private tetrisBlockFactory: TetrisBlockFactory; // 테트리스 블록 팩토리의 타입 추가
+  private timerManger: TimerManager;
   cursors: (() => Phaser.Types.Input.Keyboard.CursorKeys) | undefined;
 
   constructor(scene: Phaser.Scene) {
@@ -21,6 +23,7 @@ export default class GameBoard {
     this.renderBoard = [];
     this.currentTetrisBlock = undefined;
     this.tetrisBlockFactory = TetrisBlockFactory.getInstance(); // 테트리스 블록 팩토리의 인스턴스 생성
+    this.timerManger = TimerManager.getInstance();
   }
 
   init(): void {
@@ -113,6 +116,28 @@ export default class GameBoard {
     }
   }
 
+  update(time: number, delta: number): void {
+    if (this.timerManger.checkBlockDropTime()) {
+      if (this.canMoveBlock(0, 1)) {
+        this.currentTetrisBlock?.move(0, 1);
+      } else {
+        //palce
+      }
+    }
+  }
+
+  placeBlock() {
+    if (this.currentTetrisBlock === undefined) return;
+    const renderInfo = this.currentTetrisBlock.getRenderInfo();
+    for (let y = renderInfo.startY, y2 = 0; y < renderInfo.endY; y++, y2++) {
+      for (let x = renderInfo.startX, x2 = 0; x < renderInfo.endX; x++, x2++) {
+        if (renderInfo.tiles[y2][x2] !== 0) {
+          // 현재 보드를 board에 계속 저장해야함.
+          this.board[y][x] = renderInfo.tiles[y2][x2];
+        }
+      }
+    }
+  }
   render(): void {
     // 기존에 그려진 이미지 지움
     this.scene.children.removeAll();
