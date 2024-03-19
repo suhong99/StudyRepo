@@ -267,8 +267,7 @@ export default class GameBoard {
               j * GameConfig.MainScene.RENDER_TILE_SIZE,
               i * GameConfig.MainScene.RENDER_TILE_SIZE,
               GameConfig.MainScene.RENDER_TILE_SPRITE_SHEET_KEY,
-              this.board[i][j]
-              // this.board[i][j] - 1
+              this.renderBoard[i][j] - 1
             )
             .setScale(
               GameConfig.MainScene.RENDER_TILE_SIZE /
