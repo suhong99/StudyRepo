@@ -55,6 +55,18 @@ export default class GameBoard {
     this.currentTetrisBlock.move(offsetX, offsetY);
   }
 
+  dropBlock() {
+    if (this.currentTetrisBlock === undefined) return;
+
+    for (let y = 0; y < GameConfig.MainScene.GAME_BOARD_HEIGHT_CNT; y++) {
+      if (!this.canMoveBlock(0, y)) {
+        this.currentTetrisBlock.move(0, y - 1);
+        break;
+      }
+    }
+    this.placeBlock();
+  }
+
   handleKeyUp(event: { keyCode: number }) {
     if (
       event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT &&
@@ -71,8 +83,13 @@ export default class GameBoard {
       this.canMoveBlock(0, 1)
     ) {
       this.currentTetrisBlock?.move(0, 1);
-    } else if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
+    } else if (
+      event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP &&
+      this.canRotateBlock()
+    ) {
       this.currentTetrisBlock?.rotate();
+    } else if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.SPACE) {
+      this.dropBlock();
     }
   }
 
@@ -91,6 +108,7 @@ export default class GameBoard {
 
     if (!checkBlockWithInArea(blockInfo, this.board)) return false;
     if (checkBlockCollision(blockInfo, this.board)) return false;
+    return true;
   }
 
   _boardToRenderBoard() {
@@ -117,11 +135,17 @@ export default class GameBoard {
   }
 
   update(time: number, delta: number): void {
-    if (this.timerManger.checkBlockDropTime()) {
-      if (this.canMoveBlock(0, 1)) {
-        this.currentTetrisBlock?.move(0, 1);
-      } else {
-        //palce
+    const { isClear, line } = this.checkForClearableLines();
+    if (line !== undefined) {
+      this.clearLines(line);
+      this.lineDown(line);
+    } else {
+      if (this.timerManger.checkBlockDropTime()) {
+        if (this.canMoveBlock(0, 1)) {
+          this.currentTetrisBlock?.move(0, 1);
+        } else {
+          this.placeBlock();
+        }
       }
     }
   }
@@ -137,7 +161,41 @@ export default class GameBoard {
         }
       }
     }
+
+    this.spawnRandomBlock(GameConfig.MainScene.GAME_BOARD_WIDTH_CNT / 2, 0);
   }
+
+  checkForClearableLines() {
+    for (let y = GameConfig.MainScene.GAME_BOARD_HEIGHT_CNT - 1; y >= 0; y--) {
+      let isClear = true;
+      for (let x = 0; x < GameConfig.MainScene.GAME_BOARD_WIDTH_CNT; x++) {
+        if (this.board[y][x] === 0) {
+          isClear = false;
+          break;
+        }
+      }
+      if (isClear) {
+        return { isClear, line: y };
+      }
+    }
+    return { isClear: false };
+  }
+
+  clearLines(line: number) {
+    for (let x = 0; x < GameConfig.MainScene.GAME_BOARD_WIDTH_CNT; x++) {
+      this.board[line][x] = 0;
+    }
+  }
+
+  lineDown(line: number) {
+    for (let x = 0; x < GameConfig.MainScene.GAME_BOARD_WIDTH_CNT; x++) {
+      for (let y = line; y >= 1; y--) {
+        this.board[y][x] = this.board[y - 1][x];
+        this.board[y - 1][x] = 0;
+      }
+    }
+  }
+
   render(): void {
     // 기존에 그려진 이미지 지움
     this.scene.children.removeAll();

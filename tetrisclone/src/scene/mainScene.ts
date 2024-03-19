@@ -44,7 +44,10 @@ export default class MainScene extends Phaser.Scene {
     // this.add.image(300, 300, 'back', 0);
 
     this.gameBoard.init();
-    this.gameBoard.spawnRandomBlock(5, 0);
+    this.gameBoard.spawnRandomBlock(
+      GameConfig.MainScene.GAME_BOARD_WIDTH_CNT / 2,
+      0
+    );
     this.gameBoard.render();
   }
 
