@@ -7,6 +7,7 @@ import {
   checkBlockWithInArea,
 } from './tetrisblock/helper';
 import TimerManager from '../manager/timermanager';
+import TetrisBlock from './tetrisblock/base';
 
 export default class GameBoard {
   private scene: Phaser.Scene;
@@ -15,6 +16,7 @@ export default class GameBoard {
   private currentTetrisBlock: BlockType | undefined; // 현재 블록의 타입을 추가
   private tetrisBlockFactory: TetrisBlockFactory; // 테트리스 블록 팩토리의 타입 추가
   private timerManger: TimerManager;
+  private gameEnd = false;
   cursors: (() => Phaser.Types.Input.Keyboard.CursorKeys) | undefined;
 
   constructor(scene: Phaser.Scene) {
@@ -47,7 +49,7 @@ export default class GameBoard {
   spawnRandomBlock(x: number, y: number) {
     const block = this.tetrisBlockFactory.createRandomBlock();
     block.setPosition(x, y);
-    this.currentTetrisBlock = block;
+    return block;
   }
 
   moveBlock(offsetX: number, offsetY: number) {
@@ -135,19 +137,41 @@ export default class GameBoard {
   }
 
   update(time: number, delta: number): void {
+    if (this.gameEnd) return;
+
     const { isClear, line } = this.checkForClearableLines();
     if (line !== undefined) {
       this.clearLines(line);
       this.lineDown(line);
     } else {
-      if (this.timerManger.checkBlockDropTime()) {
-        if (this.canMoveBlock(0, 1)) {
-          this.currentTetrisBlock?.move(0, 1);
+      if (this.currentTetrisBlock === undefined) {
+        const block = this.spawnRandomBlock(
+          GameConfig.MainScene.GAME_BOARD_WIDTH_CNT / 2,
+          0
+        );
+        if (this.canSpawnBlock(block)) {
+          this.currentTetrisBlock = block;
         } else {
-          this.placeBlock();
+          this.gameEnd = true;
+          this.scene.cameras.main.shake(500);
+        }
+      } else {
+        if (this.timerManger.checkBlockDropTime()) {
+          if (this.canMoveBlock(0, 1)) {
+            this.currentTetrisBlock.move(0, 1);
+          } else {
+            this.placeBlock();
+          }
         }
       }
     }
+  }
+
+  canSpawnBlock(block: TetrisBlock) {
+    const blockInfo = block.getRenderInfo();
+    if (!checkBlockWithInArea(blockInfo, this.board)) return false;
+    if (checkBlockCollision(blockInfo, this.board)) return false;
+    return true;
   }
 
   placeBlock() {
@@ -162,7 +186,8 @@ export default class GameBoard {
       }
     }
 
-    this.spawnRandomBlock(GameConfig.MainScene.GAME_BOARD_WIDTH_CNT / 2, 0);
+    // 현재 블럭 없애줌
+    this.currentTetrisBlock = undefined;
   }
 
   checkForClearableLines() {
