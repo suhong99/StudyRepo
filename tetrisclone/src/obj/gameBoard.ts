@@ -70,6 +70,8 @@ export default class GameBoard {
   }
 
   handleKeyUp(event: { keyCode: number }) {
+    if (this.currentTetrisBlock === undefined || this.gameEnd) return;
+
     if (
       event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT &&
       this.canMoveBlock(-1, 0)
@@ -126,6 +128,7 @@ export default class GameBoard {
 
     for (let y = renderInfo.startY; y < renderInfo.endY; y++) {
       for (let x = renderInfo.startX; x < renderInfo.endX; x++) {
+        if (y < 0 || x < 0) continue;
         if (
           renderInfo.tiles[y - renderInfo.startY][x - renderInfo.startX] !== 0
         ) {
@@ -152,6 +155,7 @@ export default class GameBoard {
         if (this.canSpawnBlock(block)) {
           this.currentTetrisBlock = block;
         } else {
+          this.currentTetrisBlock = this.setLastBlockPos(block);
           this.gameEnd = true;
           this.scene.cameras.main.shake(500);
         }
@@ -165,6 +169,16 @@ export default class GameBoard {
         }
       }
     }
+  }
+
+  setLastBlockPos(block: TetrisBlock) {
+    let blockInfo = block.getRenderInfo();
+    while (checkBlockCollision(blockInfo, this.board)) {
+      block.move(0, -1);
+      blockInfo = block.getRenderInfo();
+    }
+
+    return block;
   }
 
   canSpawnBlock(block: TetrisBlock) {
