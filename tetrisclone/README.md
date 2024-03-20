@@ -8,4 +8,6 @@
     2. JS 기반의 강의를 TS로 변환하면서 TS에 익숙해지기
     3. Develop 해보기
 
-## 시연 이미지
+## 시연 영상
+![GIFMaker_me](https://github.com/suhong99/StudyRepo/assets/120103909/0eb9560e-e000-4a05-948f-2003ac6f6d1a)
+
