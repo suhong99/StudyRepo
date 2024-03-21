@@ -12,9 +12,6 @@
 
 ![GIFMaker_me](https://github.com/suhong99/StudyRepo/assets/120103909/0eb9560e-e000-4a05-948f-2003ac6f6d1a)
 
-## 코드 리뷰
+## 프로젝트 리뷰 게시글
 
-index.html의 app이라는 div에서 main.ts를 사용하여 구현함  
-main.ts에서는 Phaser 라이브러리를 사용하여, app을 부모로 두고 MainScene클래스를 400\*800px로 랜더링함
-
-`Phaser.Scene`
+[티스토리](https://ungumungum.tistory.com/95)
