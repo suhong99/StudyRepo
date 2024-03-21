@@ -36,13 +36,6 @@ export default class MainScene extends Phaser.Scene {
     );
   }
   create(): void {
-    // // 영상과 다르게 fill 대신 color옵션(fill해도 적용은 됨)
-    // this.add.text(100, 100, 'Hello World', { color: '#0f0' });
-    // this.add.image(200, 200, 'block', 0);
-    // this.add.image(200, 300, 'block', 1);
-
-    // this.add.image(300, 300, 'back', 0);
-
     this.gameBoard.init();
     this.gameBoard.spawnRandomBlock(
       GameConfig.MainScene.GAME_BOARD_WIDTH_CNT / 2,
