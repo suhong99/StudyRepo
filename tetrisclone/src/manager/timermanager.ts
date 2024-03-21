@@ -4,9 +4,9 @@ export default class TimerManager {
   private static instance: TimerManager;
   private fallingBlockTimer: number = 0;
 
+  // 하나의 Timer만 인스턴스로 생성
   private constructor() {
     if (!TimerManager.instance) {
-      this.fallingBlockTimer = 0;
       TimerManager.instance = this;
     }
     return TimerManager.instance;

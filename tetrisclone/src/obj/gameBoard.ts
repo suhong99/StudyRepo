@@ -46,18 +46,18 @@ export default class GameBoard {
     }
   }
 
-  spawnRandomBlock(x: number, y: number) {
+  public spawnRandomBlock(x: number, y: number) {
     const block = this.tetrisBlockFactory.createRandomBlock();
     block.setPosition(x, y);
     return block;
   }
 
-  moveBlock(offsetX: number, offsetY: number) {
+  private moveBlock(offsetX: number, offsetY: number) {
     if (this.currentTetrisBlock === undefined) return;
     this.currentTetrisBlock.move(offsetX, offsetY);
   }
 
-  dropBlock() {
+  private dropBlock() {
     if (this.currentTetrisBlock === undefined) return;
 
     for (let y = 0; y < GameConfig.MainScene.GAME_BOARD_HEIGHT_CNT; y++) {
@@ -69,7 +69,7 @@ export default class GameBoard {
     this.placeBlock();
   }
 
-  handleKeyUp(event: { keyCode: number }) {
+  private handleKeyUp(event: { keyCode: number }) {
     if (this.currentTetrisBlock === undefined || this.gameEnd) return;
 
     if (
@@ -97,7 +97,7 @@ export default class GameBoard {
     }
   }
 
-  canMoveBlock(offsetX: number, offsetY: number) {
+  private canMoveBlock(offsetX: number, offsetY: number) {
     if (this.currentTetrisBlock === undefined) return;
     const blockInfo = this.currentTetrisBlock.getNextMoveInfo(offsetX, offsetY);
 
@@ -106,7 +106,7 @@ export default class GameBoard {
     return true;
   }
 
-  canRotateBlock() {
+  private canRotateBlock() {
     if (this.currentTetrisBlock === undefined) return;
     const blockInfo = this.currentTetrisBlock.getNextRotateInfo();
 
@@ -115,14 +115,14 @@ export default class GameBoard {
     return true;
   }
 
-  _boardToRenderBoard() {
+  private _boardToRenderBoard() {
     for (let y = 0; y < GameConfig.MainScene.GAME_BOARD_HEIGHT_CNT; y++) {
       for (let x = 0; x < GameConfig.MainScene.GAME_BOARD_WIDTH_CNT; x++) {
         this.renderBoard[y][x] = this.board[y][x];
       }
     }
   }
-  _currentBlockToRendorBoard() {
+  private _currentBlockToRendorBoard() {
     if (this.currentTetrisBlock === undefined) return;
     const renderInfo = this.currentTetrisBlock.getRenderInfo();
 
@@ -139,7 +139,7 @@ export default class GameBoard {
     }
   }
 
-  update(time: number, delta: number): void {
+  public update(time: number, delta: number): void {
     if (this.gameEnd) return;
 
     const { isClear, line } = this.checkForClearableLines();
@@ -171,7 +171,7 @@ export default class GameBoard {
     }
   }
 
-  setLastBlockPos(block: TetrisBlock) {
+  private setLastBlockPos(block: TetrisBlock) {
     let blockInfo = block.getRenderInfo();
     while (checkBlockCollision(blockInfo, this.board)) {
       block.move(0, -1);
@@ -181,14 +181,14 @@ export default class GameBoard {
     return block;
   }
 
-  canSpawnBlock(block: TetrisBlock) {
+  private canSpawnBlock(block: TetrisBlock) {
     const blockInfo = block.getRenderInfo();
     if (!checkBlockWithInArea(blockInfo, this.board)) return false;
     if (checkBlockCollision(blockInfo, this.board)) return false;
     return true;
   }
 
-  placeBlock() {
+  private placeBlock() {
     if (this.currentTetrisBlock === undefined) return;
     const renderInfo = this.currentTetrisBlock.getRenderInfo();
     for (let y = renderInfo.startY, y2 = 0; y < renderInfo.endY; y++, y2++) {
@@ -204,7 +204,7 @@ export default class GameBoard {
     this.currentTetrisBlock = undefined;
   }
 
-  checkForClearableLines() {
+  private checkForClearableLines() {
     for (let y = GameConfig.MainScene.GAME_BOARD_HEIGHT_CNT - 1; y >= 0; y--) {
       let isClear = true;
       for (let x = 0; x < GameConfig.MainScene.GAME_BOARD_WIDTH_CNT; x++) {
@@ -220,13 +220,13 @@ export default class GameBoard {
     return { isClear: false };
   }
 
-  clearLines(line: number) {
+  private clearLines(line: number) {
     for (let x = 0; x < GameConfig.MainScene.GAME_BOARD_WIDTH_CNT; x++) {
       this.board[line][x] = 0;
     }
   }
 
-  lineDown(line: number) {
+  private lineDown(line: number) {
     for (let x = 0; x < GameConfig.MainScene.GAME_BOARD_WIDTH_CNT; x++) {
       for (let y = line; y >= 1; y--) {
         this.board[y][x] = this.board[y - 1][x];
@@ -235,7 +235,7 @@ export default class GameBoard {
     }
   }
 
-  render(): void {
+  public render(): void {
     // 기존에 그려진 이미지 지움
     this.scene.children.removeAll();
     // 보드판을 랜더판에 보여줌
