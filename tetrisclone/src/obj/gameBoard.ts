@@ -52,11 +52,6 @@ export default class GameBoard {
     return block;
   }
 
-  private moveBlock(offsetX: number, offsetY: number) {
-    if (this.currentTetrisBlock === undefined) return;
-    this.currentTetrisBlock.move(offsetX, offsetY);
-  }
-
   private dropBlock() {
     if (this.currentTetrisBlock === undefined) return;
 
@@ -142,30 +137,24 @@ export default class GameBoard {
   public update(time: number, delta: number): void {
     if (this.gameEnd) return;
 
-    const { isClear, line } = this.checkForClearableLines();
-    if (line !== undefined) {
-      this.clearLines(line);
-      this.lineDown(line);
-    } else {
-      if (this.currentTetrisBlock === undefined) {
-        const block = this.spawnRandomBlock(
-          GameConfig.MainScene.GAME_BOARD_WIDTH_CNT / 2,
-          0
-        );
-        if (this.canSpawnBlock(block)) {
-          this.currentTetrisBlock = block;
-        } else {
-          this.currentTetrisBlock = this.setLastBlockPos(block);
-          this.gameEnd = true;
-          this.scene.cameras.main.shake(500);
-        }
+    if (this.currentTetrisBlock === undefined) {
+      const block = this.spawnRandomBlock(
+        GameConfig.MainScene.GAME_BOARD_WIDTH_CNT / 2,
+        0
+      );
+      if (this.canSpawnBlock(block)) {
+        this.currentTetrisBlock = block;
       } else {
-        if (this.timerManger.checkBlockDropTime()) {
-          if (this.canMoveBlock(0, 1)) {
-            this.currentTetrisBlock.move(0, 1);
-          } else {
-            this.placeBlock();
-          }
+        this.currentTetrisBlock = this.setLastBlockPos(block);
+        this.gameEnd = true;
+        this.scene.cameras.main.shake(500);
+      }
+    } else {
+      if (this.timerManger.checkBlockDropTime()) {
+        if (this.canMoveBlock(0, 1)) {
+          this.currentTetrisBlock.move(0, 1);
+        } else {
+          this.placeBlock();
         }
       }
     }
@@ -190,12 +179,18 @@ export default class GameBoard {
 
   private placeBlock() {
     if (this.currentTetrisBlock === undefined) return;
+
     const renderInfo = this.currentTetrisBlock.getRenderInfo();
     for (let y = renderInfo.startY, y2 = 0; y < renderInfo.endY; y++, y2++) {
       for (let x = renderInfo.startX, x2 = 0; x < renderInfo.endX; x++, x2++) {
         if (renderInfo.tiles[y2][x2] !== 0) {
           // 현재 보드를 board에 계속 저장해야함.
           this.board[y][x] = renderInfo.tiles[y2][x2];
+          const { line } = this.checkForClearableLines();
+          if (line !== undefined) {
+            this.clearLines(line);
+            this.lineDown(line);
+          }
         }
       }
     }
