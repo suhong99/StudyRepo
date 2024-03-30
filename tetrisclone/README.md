@@ -1,5 +1,8 @@
-# 테트리스 클론(타입적용)
-
+# 테트리스 클론(타입적용)   
+프로젝트 실행은 클론 후에
+```bash
+npm run dev
+```
 [참고 영상](https://www.youtube.com/watch?v=_xGETajBA98)
 
 ## 목표
