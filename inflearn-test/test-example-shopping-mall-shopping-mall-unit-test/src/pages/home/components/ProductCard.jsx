@@ -15,12 +15,6 @@ import { pageRoutes } from '@/apiRoutes';
 import { pathToUrl } from '@/helpers/url';
 import { formatPrice } from '@/utils/formatter';
 
-// 단위 테스트의 경우
-// product prop 기준으로 상품 정보 (상품명, 가격, 상품 이미지)가 잘 렌더링 되는지
-// onClickAddCartButton, onClickPurchaseButton 가 올바르게 동작하는지 -> 스파이 함수
-
-// 스파이 함수 호출 여부만 검증, API에서 주는 데이터 기준으로 올바른지도 검증 불가
-// productList로 검증하면 실제 앱에서 사용자와 상호 작용하는 로직 검증 가능
 const ProductCard = ({
   product,
   onClickAddCartButton,
@@ -45,7 +39,14 @@ const ProductCard = ({
   };
 
   return (
-    <Grid item xs={6} sm={6} md={3} onClick={handleClickItem}>
+    <Grid
+      item
+      xs={6}
+      sm={6}
+      md={3}
+      onClick={handleClickItem}
+      data-testid="product-card"
+    >
       <Card sx={{ maxWidth: 345, cursor: 'pointer' }}>
         <CardMedia component="img" height="140" image={images?.[0]} />
         <CardContent>

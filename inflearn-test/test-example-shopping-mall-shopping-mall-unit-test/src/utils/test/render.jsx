@@ -17,6 +17,7 @@ export default async (component, options = {}) => {
         retry: false,
       },
     },
+    // logs가 logger로 변경됨
     logger: {
       log: console.log,
       warn: console.warn,
