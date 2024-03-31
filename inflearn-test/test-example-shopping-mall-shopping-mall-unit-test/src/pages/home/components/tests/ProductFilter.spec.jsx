@@ -10,6 +10,8 @@ const setMinPriceFn = vi.fn();
 const setMaxPriceFn = vi.fn();
 const setTitleFn = vi.fn();
 
+// 모킹이 필요함
+// __mocks__ 폴더 내부 categories.json의 데이터를 이용함
 beforeEach(() => {
   mockUseFilterStore({
     setMinPrice: setMinPriceFn,

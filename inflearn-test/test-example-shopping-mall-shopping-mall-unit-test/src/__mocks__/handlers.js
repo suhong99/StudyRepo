@@ -35,6 +35,9 @@ export const handlers = [
       ctx.json({ products, lastPage: data.products.length <= offset + limit }),
     );
   }),
+  rest.get(`${API_DOMAIN}${apiRoutes.profile}`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(null));
+  }),
   rest.post(`${API_DOMAIN}${apiRoutes.users}`, (req, res, ctx) => {
     if (req.body.name === 'FAIL') {
       return res(ctx.status(500));
