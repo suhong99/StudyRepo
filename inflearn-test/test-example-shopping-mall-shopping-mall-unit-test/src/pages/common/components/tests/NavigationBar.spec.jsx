@@ -1,6 +1,5 @@
 import { screen, within } from '@testing-library/react';
 import { rest } from 'msw';
-import { useNavigate } from 'node_modules/react-router-dom/dist/index';
 import React from 'react';
 
 import NavigationBar from '@/pages/common/components/NavigationBar';
@@ -24,9 +23,11 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-it('"Wish Mart" 텍스트 로고을 클릭할 경우 "/" 경로로 navigate가 호출된다.', async () => {
+it('"Wish Mart" 사이트 제목을 클릭할 경우 "/" 경로로 navigate가 호출된다.', async () => {
   const { user } = await render(<NavigationBar />);
+
   await user.click(screen.getByText('Wish Mart'));
+
   expect(navigateFn).toHaveBeenNthCalledWith(1, '/');
 });
 
@@ -34,7 +35,6 @@ describe('로그인이 된 경우', () => {
   const userId = 10;
 
   beforeEach(() => {
-    //use함수를 통해서 기존 모킹된 비로그인 대신 로그인 된 상태를 사용함(handle.js대신 사용)
     server.use(
       rest.get('/user', (_, res, ctx) => {
         return res(

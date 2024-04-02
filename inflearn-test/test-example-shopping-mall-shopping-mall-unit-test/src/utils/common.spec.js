@@ -11,6 +11,20 @@ describe('pick util 단위테스트', () => {
     expect(pick(obj, 'a')).toEqual({ a: 'A' });
   });
 
+  it('단일 인자로 전달된 키의 값을 객체에 담아 반환한다(snapshots)', () => {
+    const obj = {
+      a: 'A',
+      b: { c: 'C' },
+      d: null,
+    };
+
+    expect(pick(obj, 'a')).toMatchInlineSnapshot(`
+      {
+        "a": "A",
+      }
+    `);
+  });
+
   it('2개 이상의 인자로 전달된 키의 값을 객체에 담아 반환한다', () => {
     const obj = {
       a: 'A',
@@ -36,30 +50,24 @@ describe('pick util 단위테스트', () => {
   });
 });
 
-// 테스트코드는 비동기 타이머와 무관하게 동기적으로 실행됨
-// 비동기 함수가 실행되기 전에 단언이 실행됨
-// 해결방법 : 타이머 모킹!
 describe('debounce', () => {
   beforeEach(() => {
-    // teardown에서 모킹 초기화 --> 다른 테스트에 영향 미치지 않음
-    // 3rd 파티 라이브러리, 전역의 teardown에서 타이머에 의존하는 로직의 경우 fakerTimer에 의해 정상작동 안함
     vi.useFakeTimers();
-    // 시간은 흐르기 때문에 매일 달라짐
-    // -> 테스트 당시의 시간에 의존하는 테스트의 경우 시간을 고정하지 않으면 테스트가 깨질 수 있음
-    // setSystemTime을 통해 시간 고정
-    vi.setSystemTime(new Date('2023-12-25')); // 현재 시간 정의
   });
 
   afterEach(() => {
     vi.useRealTimers();
   });
+
   it('특정 시간이 지난 후 함수가 호출된다.', () => {
     const spy = vi.fn();
 
     const debouncedFn = debounce(spy, 300);
 
     debouncedFn();
-    vi.advanceTimersByTime(300); // 0.3초 흐른것처럼 조작
+
+    vi.advanceTimersByTime(300);
+
     expect(spy).toHaveBeenCalled();
   });
 
@@ -67,10 +75,9 @@ describe('debounce', () => {
     const spy = vi.fn();
 
     const debouncedFn = debounce(spy, 300);
-    // 최초 호출
+
     debouncedFn();
 
-    // 일정 시간 이후 함수 호출
     vi.advanceTimersByTime(200);
     debouncedFn();
 
@@ -81,6 +88,7 @@ describe('debounce', () => {
     debouncedFn();
 
     vi.advanceTimersByTime(300);
+    debouncedFn();
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
