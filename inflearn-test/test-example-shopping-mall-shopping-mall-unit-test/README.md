@@ -51,3 +51,9 @@ userEvent의 경우 disabled,display 상태도 고려하여 실제와 더 유사
 2. 앱의 전반적인 기능이 비즈니스 요구사항에 맞게 동작하는지 보장할 수 없다.
 
 --> 통합, E2E , 비쥬얼 테스트로 보완
+
+
+## Cypress
+
+![image](https://github.com/suhong99/StudyRepo/assets/120103909/044b0b58-0eea-45b7-9520-a380100bcfd8)
+
