@@ -52,8 +52,17 @@ userEvent의 경우 disabled,display 상태도 고려하여 실제와 더 유사
 
 --> 통합, E2E , 비쥬얼 테스트로 보완
 
-
 ## Cypress
+
+설치방법
+
+```bash
+npm i -D cypress
+```
 
 ![image](https://github.com/suhong99/StudyRepo/assets/120103909/044b0b58-0eea-45b7-9520-a380100bcfd8)
 
+Retry-ability : 잠재적인 업데이트를 예상하여 재시도하는 사이프레스의 기능(기본은 4초, 별도로 수정가능)
+Query : 전체 체이니 로직을 재시도하며 실행  
+Assertion : 단언을 수행하는 특별한 쿼리의 유형  
+Non-Query : 재시도하지 않으며 한번만 실행되는 것 (vist, click 등)

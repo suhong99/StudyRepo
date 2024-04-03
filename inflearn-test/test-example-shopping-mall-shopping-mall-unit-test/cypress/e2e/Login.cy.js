@@ -1,20 +1,26 @@
 beforeEach(() => {
+  //내장 api로 baseUrl을 기준으로 웹 페이지로 접근할 수 있게 해줌
   cy.visit('/login');
+  cy.findByLabelText('로그인').as('loginBtn');
 });
 
 it('이메일을 입력하지 않고 로그인 버튼을 클릭할 경우 "이메일을 입력하세요" 경고 메세지가 노출된다', () => {
+  // Cypress testing library -> 사용자가 앱을 사용하는 방식과 유사하게 요소 선택-> 신뢰성 있는 테스트 코드
   cy.findByLabelText('로그인').click();
 
   cy.findByText('이메일을 입력하세요').should('exist');
 });
 
 it('비밀번호를 입력하지 않고 로그인 버튼을 클릭할 경우 "비밀번호를 입력하세요" 경고 메세지가 노출된다', () => {
-  cy.findByLabelText('로그인').click();
+  //get API -> Cypress에서 지정한 별칭으로 선언한 요소에 접근
+  cy.get('@loginBtn').click(); // ===   cy.findByLabelText('로그인').click();
 
   cy.findByText('비밀번호를 입력하세요').should('exist');
 });
 
 it('잘못된 양식의 이메일을 입력한 뒤 로그인 버튼을 클릭할 경우 "이메일 양식이 올바르지 않습니다" 경고 메세지가 노출된다', () => {
+  // 체이닝을 통해 간결하게 작성 가능(Promise)
+  // 조회 후 type가  실행되는데, 변수 명을 통해 순서를 보장하는 방식은 되지 않음
   cy.findByLabelText('이메일').type('wrongemail#mail.com');
   cy.findByLabelText('로그인').click();
 
