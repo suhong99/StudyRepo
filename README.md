@@ -20,3 +20,8 @@
    [영상보기 및 해당레포Readme로 이동](https://github.com/suhong99/StudyRepo/blob/main/tetrisclone/README.md)    
    JS 기반의 강의를 TS로 변환하면서 TS에 익숙해지기  
    성능 개선 하기
+
+4. inflearn-test
+   목표 : 테스트 코드의 종류에 대한 인지와 효율적인 테스트에 대한 학습   
+   inflean-test의 강의를 통하여서 테스트 코드 실습      
+
