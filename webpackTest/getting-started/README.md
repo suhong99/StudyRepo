@@ -30,4 +30,14 @@ module.exports = {
 익명 함수로 관리함.
 
 <br/>
-Webpack First Principle : [https://www.youtube.com/watch?v=WQue1AN93YU]
+
+[Webpack First Principle](https://www.youtube.com/watch?v=WQue1AN93YU)
+
+### 웹팩의4가지 속성
+
+[출처](https://joshua1988.github.io/webpack-guide/concepts/wrapup.html#concepts-review)
+
+1. Entry 속성은 웹팩을 실행할 대상 파일. 진입점
+2. Output 속성은 웹팩의 결과물에 대한 정보를 입력하는 속성. 일반적으로 filename과 path를 정의
+3. Loader 속성은 CSS, 이미지와 같은 비 자바스크립트 파일을 웹팩이 인식할 수 있게 추가하는 속성. 로더는 오른쪽에서 왼쪽 순으로 적용
+4. Plugin 속성은 웹팩으로 변환한 파일에 추가적인 기능을 더하고 싶을 때 사용하는 속성. 웹팩 변환 과정 전반에 대한 제어권을 갖고 있음
