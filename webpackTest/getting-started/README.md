@@ -22,3 +22,12 @@ module.exports = {
 2. 브라우저별 HTTP 요청 숫자의 제약
 3. 사용하지 않는 코드의 관리
 4. Dynamic Loading & Lazy Loading 미지원
+
+### 웹팩 특징
+
+모듈로 번들하기 때문에 request 횟수가 감소함.
+![image](https://github.com/suhong99/StudyRepo/assets/120103909/abf7f8b4-b988-4f12-8616-9e1cf5607c2e)  
+익명 함수로 관리함.
+
+<br/>
+Webpack First Principle : [https://www.youtube.com/watch?v=WQue1AN93YU]
