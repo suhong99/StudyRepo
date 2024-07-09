@@ -17,7 +17,7 @@
 3. tetrisclone
    목표 : 테트리스 클론코딩을 통해 웹게임 개발해보기, vanillaJS 익숙해지기, 타입스크립트 학습하기   
    [참고 영상](https://www.youtube.com/watch?v=_xGETajBA98)   
-   [영상보기 및 해당레포Readme로 이동](https://github.com/suhong99/StudyRepo/blob/main/tetrisclone/README.md)    
+   [영상보기 및 해당 레포Readme로 이동](https://github.com/suhong99/StudyRepo/blob/main/tetrisclone/README.md)    
    JS 기반의 강의를 TS로 변환하면서 TS에 익숙해지기  
    성능 개선 하기
 
