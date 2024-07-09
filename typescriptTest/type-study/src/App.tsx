@@ -1,9 +1,13 @@
-import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import TestComp from './CHp8/TestComp';
+import { MarbleEvent } from './test/Class';
 
 function App() {
+  const marbleEvent = new MarbleEvent();
+  if (marbleEvent.hasNext('move')) {
+    console.log(typeof marbleEvent);
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -17,7 +21,6 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <TestComp />
           Learn React
         </a>
       </header>

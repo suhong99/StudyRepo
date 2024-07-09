@@ -17,8 +17,7 @@ const TestComp = () => {
   return (
     <div>
       testComp
-      <div onChange={(e) => eventHandler1(e)}></div>
-      <div onChange={(e) => eventHandler2(e)}></div>
+      {/* <div onChange={(e) => eventHandler2(e)}></div> */}
     </div>
   );
 };

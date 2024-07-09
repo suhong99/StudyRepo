@@ -1,4 +1,4 @@
-import React, {
+import {
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -17,8 +17,6 @@ import React, {
 
 // useMemo
 // useCallback
-
-import React from 'react';
 
 const Hook = () => {
   const [state, setState] = useState('');
