@@ -13,3 +13,7 @@ https://typescript-exercises.github.io/
 7번 : swap 함수에 USER ,ADMIN, string 이 오기 때문에, 제네릭을 활용해야 함.
 
 8번 : Omit으로 하는 방식이 투박해서 다른방법이 있나 싶어 모범 답안을 봤는데, 동일해서 당황함...
+
+9번 : User 혹은 Admin으로 API 요청을 할 떄, 결국 generic으로 구별하는 것. 이때 불필요하게 따로 선언했던 type은 제거했음
+
+10번 : promise와 제네릭을 섞어서 만들어야함. 예제에서는 promiseAll까지도 보여준다.
