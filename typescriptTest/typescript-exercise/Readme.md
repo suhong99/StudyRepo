@@ -17,3 +17,5 @@ https://typescript-exercises.github.io/
 9번 : User 혹은 Admin으로 API 요청을 할 떄, 결국 generic으로 구별하는 것. 이때 불필요하게 따로 선언했던 type은 제거했음
 
 10번 : promise와 제네릭을 섞어서 만들어야함. 예제에서는 promiseAll까지도 보여준다.
+
+11번 : 자바스크립트 모듈에 대해서 declare를 통해서 타입을 지정하는 작업
