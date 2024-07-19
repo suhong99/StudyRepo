@@ -23,3 +23,26 @@ https://typescript-exercises.github.io/
 12번 : 11번에 제네릭이 섞인 경우
 
 13번 : 시간과 관련된 모듈 등록. 함수 보고 매개변수 유추
+
+14번 : 많이 어려웠고, 특히Bonus는 너무 막막했다.`
+
+```ts
+function toFunctional<T extends Function>(func: T): Function {
+  const fullArgCount = func.length;
+  function createSubFunction(curriedArgs: unknown[]) {
+    return function (this: unknown) {
+      const newCurriedArguments = curriedArgs.concat(Array.from(arguments));
+      if (newCurriedArguments.length > fullArgCount) {
+        throw new Error('Too many arguments');
+      }
+      if (newCurriedArguments.length === fullArgCount) {
+        return func.apply(this, newCurriedArguments);
+      }
+      return createSubFunction(newCurriedArguments);
+    };
+  }
+  return createSubFunction([]);
+}
+```
+
+map, reduce등에 사용되는 공통 내용을 묶고 커링을 하는 방식에 대해서는 감탄했다. 함수형 프로그래밍이 왜 좋은 코드를 사용하는데 도움이 된다고 하는지 단편적으로나마 느낄 수 있었다.
