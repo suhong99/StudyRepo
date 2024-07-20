@@ -46,3 +46,5 @@ function toFunctional<T extends Function>(func: T): Function {
 ```
 
 map, reduce등에 사용되는 공통 내용을 묶고 커링을 하는 방식에 대해서는 감탄했다. 함수형 프로그래밍이 왜 좋은 코드를 사용하는데 도움이 된다고 하는지 단편적으로나마 느낄 수 있었다.
+
+15번 : 클래스를 generic과 섞어서 하는 문제. 유틸 타입을 만들어서 제네릭으로 props를 쉽게 받게 하였다.
