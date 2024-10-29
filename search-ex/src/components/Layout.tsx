@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 function Layout() {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+    if (event.key === 'Enter' && searchRef.current) {
+      navigate(`/search?query=${encodeURIComponent(searchRef.current.value)}`);
+      // navigate('/search', {
+      //   state: { query: encodeURIComponent(searchRef.current.value) },
+      // });
     }
   };
+
   return (
     <div>
       <header>
@@ -18,8 +22,7 @@ function Layout() {
         <input
           type="text"
           placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          ref={searchRef}
           onKeyDown={handleKeyDown}
         />
       </header>

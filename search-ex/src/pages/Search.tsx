@@ -10,6 +10,10 @@ const Search: React.FC = () => {
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get('query') || '';
 
+  for (const [key, value] of searchParams) {
+    console.log(key, value);
+  }
+
   // 검색어에 따른 필터링
   const filteredData = DATA.filter((item) =>
     item.title.toLowerCase().includes(query.toLowerCase())
@@ -17,6 +21,11 @@ const Search: React.FC = () => {
 
   return (
     <div>
+      {filteredData.length > 0 ? (
+        <CardList list={filteredData} />
+      ) : (
+        <div>데이터가 없습니다</div>
+      )}
       <CardList list={filteredData} />
     </div>
   );
