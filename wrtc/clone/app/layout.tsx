@@ -31,10 +31,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
         >
           <SocketProvider>
-            <main className="flext flext-col min-h-screen bg-secondary">
+            <main className="flex flex-col min-h-screen bg-secondary  ">
               <NavBar />
               <Container>{children}</Container>
             </main>
