@@ -15,3 +15,7 @@ shadcn : https://ui.shadcn.com/docs/installation/next
 ```
 npx shadcn@latest init
 ```
+
+**nodemon**
+
+서버에서의 콘솔을 실시간으로 확인하기 위해 사용

@@ -29,8 +29,6 @@ app.prepare().then(() => {
         });
       }
 
-      console.log('되나', onlineUsers);
-
       io.emit('getUsers', onlineUsers);
     });
 

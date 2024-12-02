@@ -1,3 +1,9 @@
+import ListOnlineUsers from '@/components/ui/ListOnlineUsers';
+
 export default function Home() {
-  return <div>vidchat</div>;
+  return (
+    <div>
+      <ListOnlineUsers />
+    </div>
+  );
 }
