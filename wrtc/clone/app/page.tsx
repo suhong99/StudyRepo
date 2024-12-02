@@ -1,4 +1,4 @@
-import Callnotification from '@/components/ui/Callnotification';
+import Callnotification from '@/components/ui/CallNotification';
 import ListOnlineUsers from '@/components/ui/ListOnlineUsers';
 
 export default function Home() {
