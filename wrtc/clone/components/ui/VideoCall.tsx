@@ -6,7 +6,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { MdMic, MdMicOff, MdVideocam, MdVideocamOff } from 'react-icons/md';
 
 const VideoCall = () => {
-  const { localStream, peer, ongoingCall } = useSocket();
+  const { localStream, peer, ongoingCall, handleHangup, isCallEnded } =
+    useSocket();
   const [isMicOn, setIsMicOn] = useState(true);
   const [isVidOn, setIsVidOn] = useState(true);
 
@@ -37,6 +38,11 @@ const VideoCall = () => {
     }
   }, [localStream, setIsMicOn, setIsVidOn]);
 
+  if (isCallEnded) {
+    return <div className="mt-5 text-rose-500 text-center">Call Ended</div>;
+  }
+
+  if (!localStream && !peer) return;
   return (
     <div>
       <div className="mt-4 relative">
@@ -59,7 +65,15 @@ const VideoCall = () => {
         <button onClick={toggleMic}>
           {isMicOn ? <MdMicOff size={28} /> : <MdMic size={28} />}
         </button>
-        <button className="px-4 py-2 bg-rose-500 text-white" onClick={() => {}}>
+        <button
+          className="px-4 py-2 bg-rose-500 text-white"
+          onClick={() => {
+            handleHangup({
+              ongoingCall: ongoingCall ? ongoingCall : undefined,
+              isEmitHangup: true,
+            });
+          }}
+        >
           End Call
         </button>
         <button onClick={toggleCamera}>
