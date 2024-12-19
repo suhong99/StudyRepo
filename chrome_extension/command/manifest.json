@@ -1,0 +1,24 @@
+{
+    "name": "My Shortcuts",
+    "manifest_version": 3,
+    "version": "1.0.0.0",
+    "permissions": [
+        "tabs"
+    ],
+    "action": {
+        "default_popup": "index.html"
+    },
+    "commands": {
+        "_execute_action": {
+            "suggested_key": "Alt+U",
+            "description": "Open the extension"
+        },
+        "open_facebook": {
+            "suggested_key": "Alt+Shift+F",
+            "description": "Open Facebook"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}
