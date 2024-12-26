@@ -1,11 +1,10 @@
 import './App.css';
-import CaptureEx from './intro/CaptureEx';
+import StateByKey from './intro/StateByKey';
 
 function App() {
   return (
     <main>
-      gd
-      <CaptureEx />
+      <StateByKey />
     </main>
   );
 }
