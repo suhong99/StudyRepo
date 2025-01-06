@@ -1,5 +1,3 @@
-// https://cydstumpel.nl/
-
 import * as THREE from 'three';
 import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -28,6 +26,8 @@ export default function Project1() {
   );
 }
 
+// Scroll에 따라 그룹화 해서 회전 시키도록 함
+
 function Rig(props) {
   const ref = useRef();
   const scroll = useScroll();
@@ -46,6 +46,7 @@ function Rig(props) {
 }
 
 function Carousel({ radius = 1.4, count = 8 }) {
+  // 개수 만큼 카드 컴퍼넌트 렌더링 해줌. 각도를 정해줌
   return Array.from({ length: count }, (_, i) => (
     <Card
       key={i}
@@ -65,6 +66,7 @@ function Card({ url, ...props }) {
   const [hovered, hover] = useState(false);
   const pointerOver = (e) => (e.stopPropagation(), hover(true));
   const pointerOut = () => hover(false);
+
   useFrame((state, delta) => {
     easing.damp3(ref.current.scale, hovered ? 1.15 : 1, 0.1, delta);
     easing.damp(
