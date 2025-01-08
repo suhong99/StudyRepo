@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Circle from './components/Circle.vue';
+import Conditional from './components/Conditional.vue';
 </script>
 
 <template>
-  <Circle />
+  <Conditional />
 </template>
