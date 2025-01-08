@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Conditional from './components/Conditional.vue';
+import Event_Handling from './components/Event_Handling.vue';
 </script>
 
 <template>
-  <Conditional />
+  <Event_Handling />
 </template>
