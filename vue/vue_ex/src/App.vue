@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Forms from './components/Forms.vue';
+import Watcher from './components/Watcher.vue';
 </script>
 
 <template>
-  <Forms />
+  <Watcher />
 </template>
