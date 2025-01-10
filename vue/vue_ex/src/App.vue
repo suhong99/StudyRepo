@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Watcher from './components/Watcher.vue';
+import Components_basic from './components/Components_basic.vue';
 </script>
 
 <template>
-  <Watcher />
+  <Components_basic title="제목" />
 </template>
