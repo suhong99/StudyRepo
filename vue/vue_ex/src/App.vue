@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Components_basic from './components/Components_basic.vue';
+import StateTest from './components/state/StateTest.vue';
 </script>
 
 <template>
-  <Components_basic title="제목" />
+  <StateTest />
 </template>
