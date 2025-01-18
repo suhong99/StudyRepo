@@ -16,6 +16,8 @@ const options = ref([
 ]);
 
 const msg = ref<string>('');
+
+console.log('리렌더링확인');
 </script>
 
 <template>
