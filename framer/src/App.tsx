@@ -1,10 +1,10 @@
 import './App.css';
-import { BounceDiv } from './example/Examples';
+import PathDrawing from './component/docs/SvgDrawing';
 
 function App() {
   return (
     <>
-      <BounceDiv />
+      <PathDrawing />
     </>
   );
 }
