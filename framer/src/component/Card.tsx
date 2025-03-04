@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import './Card.css';
 
-const TossCard = () => {
+const TCard = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -36,7 +36,7 @@ const TossCard = () => {
     </motion.div>
   );
 };
-export default TossCard;
+export default TCard;
 
 const PlusIcon = () => {
   return (

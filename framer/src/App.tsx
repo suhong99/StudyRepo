@@ -1,11 +1,11 @@
 import './App.css';
-import PathDrawing from './component/docs/SvgDrawing';
+import HTMLContent from './component/docs/AnimateContent';
 
 function App() {
   return (
-    <>
-      <PathDrawing />
-    </>
+    <div>
+      <HTMLContent />
+    </div>
   );
 }
 
