@@ -1,10 +1,10 @@
 import './App.css';
-import StateByKey from './intro/StateByKey';
+import Router_EX from './study_ex/router/Route';
 
 function App() {
   return (
     <main>
-      <StateByKey />
+      <Router_EX />
     </main>
   );
 }

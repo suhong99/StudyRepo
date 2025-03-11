@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SPA History API State 테스트</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+      }
+      button {
+        margin: 5px;
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>SPA History API State 테스트</h1>
+    <p>현재 state: <span id="stateValue">null</span></p>
+    <button id="pushButton">pushState 실행</button>
+    <button id="replaceButton">replaceState 실행</button>
+    <p>
+      위 버튼을 눌러 state를 설정한 후, 페이지를 새로고침(F5) 해보세요.
+      브라우저에 따라 state가 유지될 수도, 초기화(null)될 수도 있습니다.
+    </p>
+
+    <script>
+      const stateValue = document.getElementById('stateValue');
+      const pushButton = document.getElementById('pushButton');
+      const replaceButton = document.getElementById('replaceButton');
+
+      function updateDisplay() {
+        stateValue.textContent = JSON.stringify(history.state);
+      }
+
+      // 페이지 로드 시 현재 state 출력
+      updateDisplay();
+
+      // pushState: 현재 URL 그대로 사용하면서 새로운 state 추가
+      pushButton.addEventListener('click', () => {
+        history.pushState(
+          {
+            message: 'pushState로 설정됨',
+            time: new Date().toLocaleTimeString(),
+          },
+          '', // title (대부분 무시됨)
+          null // URL 변경 없이 현재 URL 사용
+        );
+        updateDisplay();
+      });
+
+      // replaceState: 현재 state를 교체 (URL은 변경하지 않음)
+      replaceButton.addEventListener('click', () => {
+        history.replaceState(
+          {
+            message: 'replaceState로 교체됨',
+            time: new Date().toLocaleTimeString(),
+          },
+          '',
+          null
+        );
+        updateDisplay();
+      });
+
+      // popstate 이벤트 리스너 (뒤로가기/앞으로가기 시 호출)
+      window.addEventListener('popstate', (event) => {
+        console.log('popstate 이벤트 발생:', event.state);
+        updateDisplay();
+      });
+    </script>
+  </body>
+</html>
