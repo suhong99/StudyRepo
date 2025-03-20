@@ -28,3 +28,15 @@
 5. 검색 서비스 구현
    목표 : URL 기반 검색 서비스 구현하기
    Router와 uRLSearchParams API 활용
+
+6. chrome_extension
+   크롬 확장자 만들기 전 시범적 연습폴더
+7. r3f
+   r3f example들을 보면서 코드 분석 및 학습
+8. nextjsfirebase
+   firebase가 제공하는 next.js 적용 예제
+9. vue
+   vue를 활용한 todolist 구현 및 vue와 react 차이점을 학습하기 위한 폴더
+10. framer
+   interactive한 경험을 줄 때 사용하는 애니메이션 라이브러리 framer 학습 레포
+
