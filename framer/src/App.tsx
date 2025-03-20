@@ -1,11 +1,11 @@
-import './App.css';
-import HTMLContent from './component/docs/AnimateContent';
-import TransitionBall from './component/docs/TransitionBall';
+import "./App.css";
+import ScrollLinked from "./component/docs/ScrollLinkedAnimation";
+import ScrollTriggered from "./component/docs/ScrollTriggerAnimation";
 
 function App() {
   return (
     <div>
-      <TransitionBall />
+      <ScrollLinked />
     </div>
   );
 }
