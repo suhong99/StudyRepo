@@ -1,11 +1,11 @@
 import "./App.css";
-import ScrollLinked from "./component/docs/ScrollLinkedAnimation";
-import ScrollTriggered from "./component/docs/ScrollTriggerAnimation";
+import DragConstraints from "./component/docs/DragConstraints";
+import Drag from "./component/docs/DragDirection";
 
 function App() {
   return (
     <div>
-      <ScrollLinked />
+      <Drag />
     </div>
   );
 }
