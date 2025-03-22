@@ -1,11 +1,12 @@
 import "./App.css";
-import DragConstraints from "./component/docs/DragConstraints";
-import Drag from "./component/docs/DragDirection";
+import SharedLayoutAnimation from "./component/docs/LayoutTabs";
+import LayoutWithChild from "./component/docs/LayoutWithChild";
+import Reordering from "./component/docs/ReorderAnimation";
 
 function App() {
   return (
     <div>
-      <Drag />
+      <LayoutWithChild />
     </div>
   );
 }
