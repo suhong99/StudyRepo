@@ -1,12 +1,11 @@
 import "./App.css";
-import SharedLayoutAnimation from "./component/docs/LayoutTabs";
-import LayoutWithChild from "./component/docs/LayoutWithChild";
-import Reordering from "./component/docs/ReorderAnimation";
+import Buildings from "./component/example/official_ex/Buildings";
+import ScollEx from "./component/example/Scroll";
 
 function App() {
   return (
     <div>
-      <LayoutWithChild />
+      <Buildings />
     </div>
   );
 }
