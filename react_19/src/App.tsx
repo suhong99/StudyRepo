@@ -1,10 +1,10 @@
-import './App.css';
-import Router_EX from './study_ex/router/Route';
+import "./App.css";
+import Search_Policy from "./study_ex/search_policy";
 
 function App() {
   return (
     <main>
-      <Router_EX />
+      <Search_Policy />
     </main>
   );
 }
