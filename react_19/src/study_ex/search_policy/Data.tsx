@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Data = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [billData, setBillData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -31,7 +32,7 @@ const Data = () => {
         const rows = await getBillData("22");
         setBillData(rows);
       } catch (err) {
-        setError("API 요청 실패");
+        setError(`API 요청 실패: ${err}`);
       } finally {
         setLoading(false);
       }
