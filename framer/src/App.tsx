@@ -1,10 +1,10 @@
 import "./App.css";
-import ScollEx from "./component/example/Scroll";
+import Tosslike from "./component/example/Scroll/tossclone/Tosslike";
 
 function App() {
   return (
     <>
-      <ScollEx />
+      <Tosslike />
     </>
   );
 }
