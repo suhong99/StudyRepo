@@ -1,4 +1,4 @@
-import AnotherText from "./components/\bAnotherText";
+import AnotherText from "./components/AnotherText";
 import Block from "./components/Block";
 import FloatingCard from "./components/FloatingCard";
 
@@ -12,7 +12,7 @@ const Tosslike = () => {
         alignItems: "center",
       }}
     >
-      <Block height={"3000px"} />
+      <Block height={"4000px"} />
       <FloatingCard />
       <AnotherText />
     </div>
