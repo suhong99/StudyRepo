@@ -1,18 +1,16 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import FloatingCardText from "./FloatingCardText";
+import FloatingImg from "./FloatingImg";
 
 const FloatingCard = () => {
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [2000, 3400], [0.7, 0]);
-  const scale = useTransform(scrollY, [400, 2000], [1, 1.3]);
-  const blackOpacity = useTransform(scrollY, [0, 1500], [0.2, 0.6]);
+  const opacity = useTransform(scrollY, [3500, 4300], [0.7, 0]);
 
   return (
     <motion.div
       style={{
         width: "100%",
         height: "100vh",
-        backgroundColor: "black",
         opacity,
         position: "fixed",
         top: "0px",
@@ -25,22 +23,7 @@ const FloatingCard = () => {
         overflow: "hidden",
       }}
     >
-      <motion.img
-        src="/partenon.jpg"
-        alt="Floating img"
-        width="100%"
-        height="100%"
-        style={{ scale, position: "absolute", top: "0px" }}
-      />
-      <motion.div
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          backgroundColor: "black",
-          opacity: blackOpacity,
-        }}
-      />
+      <FloatingImg scrollY={scrollY} />
       <motion.div
         style={{
           zIndex: 3,

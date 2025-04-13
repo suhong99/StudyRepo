@@ -3,8 +3,13 @@ import FloatingLineText from "./FloatingLineText";
 
 const FloatingCardText = () => {
   const { scrollY } = useScroll();
-
   const mainTextOpacity = useTransform(scrollY, [1200, 1300], [1, 0]);
+
+  const floatingTexts = [
+    { start: 1400, text: "첫 번째 줄이 올라옵니다" },
+    { start: 2100, text: "두 번째 줄이 올라옵니다" },
+    { start: 2700, text: "세 번째 줄이 올라옵니다" },
+  ];
 
   return (
     <div
@@ -23,21 +28,14 @@ const FloatingCardText = () => {
         당신도 깊게 몰입했던 <br /> 무언가가 있나요?
       </motion.div>
 
-      <FloatingLineText
-        scrollY={scrollY}
-        start={1400}
-        text="첫 번째 줄이 올라옵니다"
-      />
-      <FloatingLineText
-        scrollY={scrollY}
-        start={2000}
-        text="두 번째 줄이 올라옵니다"
-      />
-      <FloatingLineText
-        scrollY={scrollY}
-        start={2600}
-        text="세 번째 줄이 올라옵니다"
-      />
+      {floatingTexts.map(({ start, text }) => (
+        <FloatingLineText
+          key={start}
+          scrollY={scrollY}
+          start={start}
+          text={text}
+        />
+      ))}
     </div>
   );
 };
