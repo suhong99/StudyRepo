@@ -1,10 +1,10 @@
 import "./App.css";
-import Search_Policy from "./study_ex/search_policy";
+import ComponentTestLayout from "./components";
 
 function App() {
   return (
     <main>
-      <Search_Policy />
+      <ComponentTestLayout />
     </main>
   );
 }
