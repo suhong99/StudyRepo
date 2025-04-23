@@ -1,4 +1,4 @@
-import CardList from "./card/CardList";
+import IframeLayout from "./iframe";
 
 const ComponentTestLayout = () => {
   return (
@@ -8,9 +8,10 @@ const ComponentTestLayout = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        minHeight: "100vh",
       }}
     >
-      <CardList />
+      <IframeLayout />
     </div>
   );
 };
