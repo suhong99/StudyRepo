@@ -46,14 +46,16 @@ const Iframe = () => {
       </button>
 
       {open && (
-        <iframe
+        <embed
+          type="text/html"
           src="https://terms.naver.com/"
-          width={330}
+          width={230}
           height={400}
           style={{
             position: "absolute",
             bottom: 0,
             right: "100%",
+            width: "300px",
             marginRight: "10px",
             border: "1px solid #ccc",
             borderRadius: "8px",
