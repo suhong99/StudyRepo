@@ -1,10 +1,10 @@
 import "./App.css";
-import Tosslike from "./component/example/Scroll/tossclone/Tosslike";
+import ButtonToInput from "./component/example/Scroll/tossclone/components/ButtonToInput";
 
 function App() {
   return (
     <>
-      <Tosslike />
+      <ButtonToInput />
     </>
   );
 }
