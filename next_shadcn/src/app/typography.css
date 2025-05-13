@@ -1,0 +1,107 @@
+@utility typo-display1 {
+	font-size: 56px;
+	line-height: 72px;
+	letter-spacing: -0.0319rem;
+}
+
+@utility typo-display2 {
+	font-size: 40px;
+	line-height: 52px;
+	letter-spacing: -0.0282rem;
+}
+
+@utility typo-title1 {
+	font-size: 36px;
+	line-height: 48px;
+	letter-spacing: -0.027rem;
+}
+
+@utility typo-title2 {
+	font-size: 28px;
+	line-height: 38px;
+	letter-spacing: -0.0236rem;
+}
+
+@utility typo-title3 {
+	font-size: 24px;
+	line-height: 32px;
+	letter-spacing: -0.023rem;
+}
+
+@utility typo-heading1 {
+	font-size: 22px;
+	line-height: 30px;
+	letter-spacing: -0.0194rem;
+}
+
+@utility typo-heading2 {
+	font-size: 20px;
+	line-height: 28px;
+	letter-spacing: -0.012rem;
+}
+
+@utility typo-headline1 {
+	font-size: 18px;
+	line-height: 26px;
+	letter-spacing: -0.002rem;
+}
+
+@utility typo-headline2 {
+	font-size: 17px;
+	line-height: 24px;
+	letter-spacing: 0rem;
+}
+
+@utility typo-body1-normal {
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.0057rem;
+}
+
+@utility typo-body1-reading {
+	font-size: 16px;
+	line-height: 26px;
+	letter-spacing: 0.0057rem;
+}
+
+@utility typo-body2-normal {
+	font-size: 15px;
+	line-height: 22px;
+	letter-spacing: 0.0096rem;
+}
+
+@utility typo-body2-reading {
+	font-size: 15px;
+	line-height: 24px;
+	letter-spacing: 0.0096rem;
+}
+
+@utility typo-label1-normal {
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.0145rem;
+}
+
+@utility typo-label1-reading {
+	font-size: 14px;
+	line-height: 22px;
+	letter-spacing: 0.0145rem;
+}
+
+@utility typo-label2 {
+	font-size: 13px;
+	line-height: 18px;
+	letter-spacing: 0.0194rem;
+}
+
+@utility typo-caption1 {
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: 0.0252rem;
+}
+
+@utility typo-caption2 {
+	font-size: 11px;
+	line-height: 14px;
+	letter-spacing: 0.0311rem;
+}
