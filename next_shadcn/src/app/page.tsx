@@ -1,10 +1,14 @@
-import ScrollObserve2 from "@/components/scroll/ScrollObserver2";
+import SunguPage from "@/components/scroll-2/SunguPage";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <div className="flex justify-end w-full max-w-xs">
-        <ScrollObserve2 />
+    <div className="flex flex-col items-center min-h-screen ">
+      <div className="flex justify-between items-center sticky top-0 w-full z-20 max-w-maxw bg-red-200 h-16">
+        헤더 입니다
+      </div>
+
+      <div className="w-full max-w-[700px] mx-auto items-center bg-amber-100">
+        <SunguPage />
       </div>
     </div>
   );
